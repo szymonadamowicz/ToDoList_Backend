@@ -1,4 +1,5 @@
-﻿using to_do_list.Models;
+﻿using System.Threading.Tasks;
+using to_do_list.Models;
 
 namespace to_do_list.Data
 {
@@ -36,6 +37,19 @@ namespace to_do_list.Data
         public List<Task_model> GetTasks()
         {
             return model;
+        }
+        public void AddTask(Task_model task)
+        {
+            task.Id = model.Max(t => t.Id) + 1;
+            model.Add(task);
+        }
+        public void RemoveTask(int id)
+        {
+            var task = model.FirstOrDefault(t => t.Id == id);
+            if (task != null)
+            {
+                model.Remove(task);
+            }
         }
     }
 }

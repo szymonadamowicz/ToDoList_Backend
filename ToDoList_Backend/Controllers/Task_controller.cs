@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using to_do_list.Data;
 using to_do_list.Models;
 
@@ -21,5 +21,36 @@ public class Task_controller : ControllerBase
     public IEnumerable<Task_model> Get()
     {
         return _taskData.GetTasks();
+    }
+    [HttpPost(Name = "PosAddtTask")]
+    public IActionResult AddTask([FromBody] Task_model newTask)
+    {
+        if (newTask == null)
+        {
+            return BadRequest("Task cannot be null.");
+        }
+
+        _taskData.AddTask(newTask);
+        return CreatedAtAction(nameof(Get), newTask);
+    }
+    [HttpDelete("{id}")]
+    public IActionResult DeleteTask(int id)
+    {
+        var task = _taskData.GetTasks().FirstOrDefault(t => t.Id == id);
+        if (task == null)
+        {
+            return NotFound();
+        }
+
+        foreach (var t in _taskData.GetTasks())
+        {
+            if (t.Id > id)
+            {
+                t.Id--;
+            }
+        }
+
+        _taskData.RemoveTask(id);
+        return NoContent();
     }
 }
