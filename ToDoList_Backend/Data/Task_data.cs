@@ -51,5 +51,18 @@ namespace to_do_list.Data
                 model.Remove(task);
             }
         }
+        public void SwapTasks(int task1Id, int task2Id)
+        {
+            var index1 = model.FindIndex(t => t.Id == task1Id);
+            var index2 = model.FindIndex(t => t.Id == task2Id);
+
+            if (index1 >= 0 && index2 >= 0)
+            {
+                var temp = model[index1];
+                model[index1] = model[index2];
+                model[index2] = temp;
+            }
+        }
+
     }
 }

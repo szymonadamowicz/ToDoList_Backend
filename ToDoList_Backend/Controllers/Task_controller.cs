@@ -22,7 +22,7 @@ public class Task_controller : ControllerBase
     {
         return _taskData.GetTasks();
     }
-    [HttpPost(Name = "PosAddtTask")]
+    [HttpPost("add")]
     public IActionResult AddTask([FromBody] Task_model newTask)
     {
         if (newTask == null)
@@ -51,6 +51,13 @@ public class Task_controller : ControllerBase
         }
 
         _taskData.RemoveTask(id);
+        return NoContent();
+    }
+
+    [HttpPost("swap")]
+    public IActionResult SwapTasks([FromQuery] int task1Id, [FromQuery] int task2Id)
+    {
+        _taskData.SwapTasks(task1Id, task2Id);
         return NoContent();
     }
 }
