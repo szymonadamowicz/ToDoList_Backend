@@ -7,28 +7,29 @@ namespace to_do_list.TaskViewModel
 {
     public class TaskViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Task_model> _tasks;
-        public ObservableCollection<Task_model> Tasks
+        private ObservableCollection<TaskModel> _tasks = new();
+        public ObservableCollection<TaskModel> Tasks
         {
             get => _tasks;
-            set
-            {
-                _tasks = value;
-                OnPropertyChanged(nameof(Tasks));
-            }
+            set { _tasks = value; OnPropertyChanged(nameof(Tasks)); }
         }
-        private readonly Task_data _taskData;
 
-        public TaskViewModel(Task_data taskData)
+        private readonly TaskData _taskData;
+
+        public TaskViewModel(TaskData taskData)
         {
             _taskData = taskData;
-            _tasks = new ObservableCollection<Task_model>(_taskData.GetTasks());
+            RefreshTasks();
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged(string propertyName)
+        public void RefreshTasks()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Tasks = new ObservableCollection<TaskModel>(_taskData.GetTasks());
         }
-    }
+
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    } 
 }
