@@ -14,7 +14,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddControllers();
-builder.Services.AddSingleton<Task_data>();
+builder.Services.AddSingleton<TaskData>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
