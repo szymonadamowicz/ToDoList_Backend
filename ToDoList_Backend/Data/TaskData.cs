@@ -38,6 +38,12 @@ namespace to_do_list.Data
                 (_tasks[index1], _tasks[index2]) = (_tasks[index2], _tasks[index1]);
             }
         }
+        public void SetCompleted(int task1Id)
+        {
+            var index1 = _tasks.FindIndex(t => t.Id == task1Id);
+
+            _tasks[index1].IsCompleted = !_tasks[index1].IsCompleted;
+        }
 
     }
 }
