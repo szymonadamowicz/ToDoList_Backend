@@ -12,16 +12,16 @@ namespace to_do_list.Data
         {
             _tasks.AddRange(new[]
             {
-            new TaskModel { Id = 1, Name = "Task 1", Description = "Opis 1", IsCompleted = false },
-            new TaskModel { Id = 2, Name = "Task 2", Description = "Opis 2", IsCompleted = true },
-            new TaskModel { Id = 3, Name = "Task 3", Description = "Opis 3", IsCompleted = false },
+            new TaskModel { Id = 1, Name = "Task 1", Description = "Opis 1", DueDate = DateTime.Parse("2025-03-25T14:00:00"), IsCompleted = false },
+            new TaskModel { Id = 2, Name = "Task 2", Description = "Opis 2", DueDate = DateTime.Parse("2025-03-26T14:50:00"), IsCompleted = true },
+            new TaskModel { Id = 3, Name = "Task 3", Description = "Opis 3", DueDate = DateTime.Parse("2025-04-25T14:21:37"), IsCompleted = false },
         });
         }
         public IReadOnlyList<TaskModel> GetTasks() => _tasks;
 
         public void AddTask(TaskModel task)
         {
-            task.Id = _tasks.Max(t => t.Id) + 1;
+            task.Id = _tasks.Count() + 1;
             _tasks.Add(task);
         }
         public bool RemoveTask(int id)
