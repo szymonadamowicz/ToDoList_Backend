@@ -44,7 +44,7 @@ public class TaskController : ControllerBase
             return BadRequest(new { message = "Invalid task IDs." });
 
         _taskData.SwapTasks(task1Id, task2Id);
-        return Ok(new { message = "Tasks swapped" });   
+        return Ok(new { message = "Tasks swapped" });       
     }
     [HttpPost("setCompleted")]
     public IActionResult SetCompleted([FromQuery] int task1Id)
