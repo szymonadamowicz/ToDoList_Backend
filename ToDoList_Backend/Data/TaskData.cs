@@ -12,16 +12,16 @@ namespace to_do_list.Data
         {
             _tasks.AddRange(new[]
             {
-            new TaskModel { Id = 1, Name = "Task 1", Description = "Opis 1", DueDate = DateTime.Parse("2025-03-25T14:00:00"), IsCompleted = false },
-            new TaskModel { Id = 2, Name = "Task 2", Description = "Opis 2", DueDate = DateTime.Parse("2025-03-26T14:50:00"), IsCompleted = true },
-            new TaskModel { Id = 3, Name = "Task 3", Description = "Opis 3", DueDate = DateTime.Parse("2025-04-25T14:21:37"), IsCompleted = false },
+            new TaskModel { Id = 0, Name = "Task 1", Description = "Opis 1", DueDate = DateTime.Parse("2025-03-25T14:00:00"), IsCompleted = false },
+            new TaskModel { Id = 1, Name = "Task 2", Description = "Opis 2", DueDate = DateTime.Parse("2025-03-26T14:50:00"), IsCompleted = true },
+            new TaskModel { Id = 2, Name = "Task 3", Description = "Opis 3", DueDate = DateTime.Parse("2025-04-25T14:21:37"), IsCompleted = false },
         });
         }
         public IReadOnlyList<TaskModel> GetTasks() => _tasks;
 
         public void AddTask(TaskModel task)
         {
-            task.Id = _tasks.Count() + 1;
+            task.Id = _tasks.Count();
             _tasks.Add(task);
         }
         public bool RemoveTask(int id)
@@ -45,5 +45,16 @@ namespace to_do_list.Data
             _tasks[index1].IsCompleted = !_tasks[index1].IsCompleted;
         }
 
+        public void EditTask(TaskModel editedTask, int taskId)
+        {
+            var task = _tasks.FirstOrDefault(t => t.Id == taskId);
+            if (task == null)
+                throw new ArgumentException($"Task with ID {taskId} not found.");
+
+            task.Name = editedTask.Name;
+            task.Description = editedTask.Description;
+            task.DueDate = editedTask.DueDate;
+            task.IsCompleted = editedTask.IsCompleted;
+        }
     }
 }

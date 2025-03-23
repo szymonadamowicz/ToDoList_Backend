@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using to_do_list.Data;
 using to_do_list.Models;
 
@@ -56,5 +57,20 @@ public class TaskController : ControllerBase
 
         _taskData.SetCompleted(task1Id);
         return Ok(new { message = "Task changed IsLicked status" });
+    }
+    [HttpPost("editTask")]
+    public IActionResult EditTask([FromBody] TaskModel editedTask, [FromQuery] int taskId)
+    {
+        var tasks = _taskData.GetTasks();
+
+        if (editedTask == null) return BadRequest(new { message = "Tasks cannot be null" });
+
+        if (!tasks.Any(t => t.Id == taskId))
+            return BadRequest(new { message = "Invalid task IDs." });
+
+        _taskData.EditTask(editedTask, taskId);
+
+
+        return Ok(new { message = "Task edited" });
     }
 }
