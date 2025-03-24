@@ -4,11 +4,11 @@ using to_do_list.Models;
 
 namespace to_do_list.Data
 {
-    public class TaskData
+    public class TaskService
     {
         private readonly List<TaskModel> _tasks = new();
 
-        public TaskData()
+        public TaskService()
         {
             _tasks.AddRange(new[]
             {
