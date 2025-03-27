@@ -1,4 +1,5 @@
 using to_do_list.Data;
+using ToDoList_Backend.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddSingleton<TaskService>();
+builder.Services.AddSingleton<ThemeService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -1,4 +1,5 @@
-﻿using to_do_list.Models;
+﻿using System.Reflection;
+using to_do_list.Models;
 
 namespace to_do_list.Utils
 {
@@ -12,7 +13,8 @@ namespace to_do_list.Utils
                 Name = dto.Name,
                 Description = dto.Description,
                 DueDate = dto.DueDate,
-                IsCompleted = dto.IsCompleted
+                IsCompleted = dto.IsCompleted,
+                IsHidden = dto.IsHidden,
             };
         }
 
@@ -24,7 +26,8 @@ namespace to_do_list.Utils
                 Name = model.Name,
                 Description = model.Description,
                 DueDate = model.DueDate,
-                IsCompleted = model.IsCompleted
+                IsCompleted = model.IsCompleted,
+                IsHidden = model.IsHidden,
             };
         }
     }
