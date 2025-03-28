@@ -80,4 +80,15 @@ public class TaskController : ControllerBase
         _taskData.EditTask(editedTask.ToModel(), taskId);
         return Ok(new { message = "Task edited" });
     }
+    [HttpPost("setHidden")]
+    public IActionResult SetHidden([FromQuery] int taskId)
+    {
+        var tasks = _taskData.GetTasks();
+
+        if (!tasks.Any(t => t.Id == taskId))
+            return BadRequest(new { message = "Invalid task ID." });
+
+        _taskData.SetHidden(taskId);
+        return Ok(new { message = "Task hidden" });
+    }
 }
