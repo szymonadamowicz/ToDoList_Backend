@@ -7,13 +7,17 @@ namespace ToDoList_Backend.Service
 {
     public class ThemeService
     {
-        private readonly IsDarkModel _theme = new();
+        private readonly UserPreferencesModel _theme = new();
 
-        public IsDarkModel GetTheme() => _theme;
+        public UserPreferencesModel GetTheme() => _theme;
 
         public void ChangeTheme()
         {
             _theme.IsDarkMode = !_theme.IsDarkMode;
+        }
+        public void ChangeLanguage()
+        {
+            _theme.Language = !_theme.Language;
         }
     }
 }

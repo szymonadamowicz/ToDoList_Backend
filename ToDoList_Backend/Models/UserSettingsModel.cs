@@ -1,7 +1,9 @@
 ﻿namespace ToDoList_Backend.Models
 {
-    public class IsDarkModel
+    public class UserPreferencesModel
     {
         public bool IsDarkMode { get; set; } = false;
+
+        public bool Language { get; set; } = true;
     }
 }

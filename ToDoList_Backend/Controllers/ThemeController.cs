@@ -14,7 +14,7 @@ public class SettingsController : ControllerBase
     }
 
     [HttpGet()]
-    public ActionResult<IsDarkModel> GetTheme()
+    public ActionResult<UserPreferencesModel> GetTheme()
     {
         var theme = _themeData.GetTheme();
         return Ok(theme);
@@ -25,5 +25,12 @@ public class SettingsController : ControllerBase
     {
         _themeData.ChangeTheme();
         return Ok(new { message = "theme changed" });
+    }
+
+    [HttpPost("changeLanguage")]
+    public IActionResult SetLanguage()
+    {
+        _themeData.ChangeLanguage();
+        return Ok(new { message = "language changed" });
     }
 }
