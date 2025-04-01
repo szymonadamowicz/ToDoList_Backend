@@ -8,6 +8,7 @@ namespace to_do_list.Models
         public DateTime DueDate { get; set; }
         public bool IsCompleted { get; set; }
         public bool IsHidden { get; set; }
+        public DateTime? CompletedAt { get; set; }
 
     }
 
