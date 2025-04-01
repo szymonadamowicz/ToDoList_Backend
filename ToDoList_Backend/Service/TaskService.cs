@@ -19,7 +19,11 @@ namespace to_do_list.Data
             new TaskModel { Id = 2, Name = "Task 3", Description = "Opis 3", DueDate = DateTime.Parse("2025-04-25T14:21:37"), IsCompleted = false, IsHidden = false },
         });
         }
-        public IReadOnlyList<TaskModel> GetTasks() => _tasks;
+        public IReadOnlyList<TaskModel> GetTasks() 
+        {
+            CleanupCompletedTasks();
+            return _tasks;
+        }
 
         public void AddTask(TaskModel task)
         {
@@ -50,6 +54,7 @@ namespace to_do_list.Data
             var index1 = _tasks.FindIndex(t => t.Id == task1Id);
 
             _tasks[index1].IsCompleted = !_tasks[index1].IsCompleted;
+            _tasks[index1].CompletedAt = DateTime.UtcNow;
         }
 
         public void EditTask(TaskModel editedTask, int taskId)
@@ -71,6 +76,14 @@ namespace to_do_list.Data
                 throw new ArgumentException($"Task with ID {taskId} not found.");
 
             task.IsHidden = !task.IsHidden;
+        }
+        public void CleanupCompletedTasks()
+        {
+            _tasks.RemoveAll(t =>
+                t.IsCompleted &&
+                t.CompletedAt.HasValue &&
+                DateTime.UtcNow - t.CompletedAt.Value > TimeSpan.FromHours(24)
+            );
         }
 
     }
