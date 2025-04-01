@@ -31,15 +31,20 @@ namespace to_do_list.Data
             var task = _tasks.FirstOrDefault(t => t.Id == id);
             return task != null && _tasks.Remove(task);
         }
-        public void SwapTasks(int task1Id, int task2Id)
+        public void SwapTasks(int draggedId, int targetId)
         {
-            var index1 = _tasks.FindIndex(t => t.Id == task1Id);
-            var index2 = _tasks.FindIndex(t => t.Id == task2Id);
-            if (index1 >= 0 && index2 >= 0)
-            {
-                (_tasks[index1], _tasks[index2]) = (_tasks[index2], _tasks[index1]);
-            }
+            var fromIndex = _tasks.FindIndex(t => t.Id == draggedId);
+            var toIndex = _tasks.FindIndex(t => t.Id == targetId);
+
+            if (fromIndex == -1 || toIndex == -1 || fromIndex == toIndex)
+                return;
+
+            var draggedTask = _tasks[fromIndex];
+            _tasks.RemoveAt(fromIndex);
+
+            _tasks.Insert(toIndex, draggedTask);
         }
+
         public void SetCompleted(int task1Id)
         {
             var index1 = _tasks.FindIndex(t => t.Id == task1Id);
