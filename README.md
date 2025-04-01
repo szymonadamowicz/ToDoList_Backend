@@ -31,14 +31,18 @@ This is the backend part of the ToDo List application – a simple task manageme
 
 ## API Endpoints
 ```
-| Method | Endpoint              | Description                      |
-|--------|-----------------------|----------------------------------|
-| GET    | `/api/tasks`          | Get all tasks                    |
-| POST   | `/api/tasks`          | Create new task                  |
-| POST   | `/api/tasks/{id}`     | Update existing task             |
-| DELETE | `/api/tasks/{id}`     | Remove task                      |
-| POST   | `/api/tasks/swap`     | Reorder tasks by dragging        |
-| POST   | `/api/tasks/hide/{id}`| Manually hide a completed task   |
+| Method | Endpoint                         | Description                      |
+|--------|----------------------------------|----------------------------------|
+| GET    | `/api/tasks`                     | Get all tasks                    |
+| POST   | `/api/tasks`                     | Create new task                  |
+| POST   | `/api/tasks/{id}`                | Update existing task             |
+| DELETE | `/api/tasks/{id}`                | Remove task                      |
+| POST   | `/api/tasks/swap`                | Reorder tasks by dragging        |
+| POST   | `/api/tasks/hide/{id}`           | Manually hide a completed task   |
+| GET    | `/api/theme`                     | Get all theme                    |
+| POST   | `/api/theme/changeTheme          | Manually change theme (color)    |
+| POST   | `/api/tasks/theme/changeLanguage | Manually change theme language   |
+
 ```
 ## 🧪 How to Run
 
