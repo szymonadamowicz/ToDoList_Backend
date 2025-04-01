@@ -10,7 +10,9 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowAnyHeader()
             .WithOrigins(
-                "http://localhost:3000"
+                "http://localhost:3000",
+                       "https://todolistfrontend-h789sajir-szymons-projects-1e0e4c1e.vercel.app"
+
             )
     );
 });
