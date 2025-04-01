@@ -5,11 +5,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
-        policy => policy
-            .AllowAnyOrigin()
+    options.AddPolicy("AllowFrontend", policy =>
+        policy
             .AllowAnyMethod()
-            .AllowAnyHeader());
+            .AllowAnyHeader()
+            .WithOrigins(
+                "http://localhost:3000"
+            )
+    );
 });
 
 builder.Services.AddControllers();
@@ -20,7 +23,7 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseCors("AllowLocalhost");
+app.UseCors("AllowFrontend");
 
 if (app.Environment.IsDevelopment())
 {
