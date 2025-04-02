@@ -1,65 +1,64 @@
+# ToDo List App – Backend
 
-# ToDo List API – Backend
+This is the backend for the ToDo List application – a task management system that includes task creation, editing, deletion, completion, reordering, and automatic hiding of completed tasks after 24 hours.
 
-This is the backend part of the ToDo List application – a simple task management system with features such as task creation, editing, deletion, completion, reordering (sorting), and automatic hiding of completed tasks after 24 hours.
+## Features
 
-## Technologies Used
-
-- **C#** with **.NET 8.0**
-- **ASP.NET Core Web API**
-- **Dependency Injection**
-- **Model-View-ViewModel (MVVM) inspired structure**
-- **RESTful API design**
-- **JSON file as in-memory data store** (no database used)
-- **CORS** enabled for frontend communication
-
-## Project Structure
-```
-- `Controllers/TaskController.cs`: main entry point for all HTTP endpoints
-- `Models/TaskModel.cs`: representation of the data layer model
-- `ViewModels/TaskViewModel.cs`: exposed model for frontend interaction
-- `Services/TaskService.cs`: contains business logic for task manipulation, sorting, and timed hiding
-- `Program.cs`: app configuration, services registration, and middleware setup
-```
-## Main Features
-
-- Create, update, delete tasks
+- Task creation, update, and deletion
 - Mark tasks as completed
 - Reorder tasks via drag-and-drop (integrated with frontend)
-- Automatically hide completed tasks after 24 hours (simulated logic)
-- Clear distinction between internal model and public-facing data via ViewModels
+- Automatically hide completed tasks after 24 hours
+- Clear separation of internal and external data models using ViewModels
+
+## Tech Stack
+
+- C# with .NET 8.0
+- ASP.NET Core Web API
+- Dependency Injection
+- MVVM-inspired structure
+- RESTful API design
+- JSON file as in-memory data store (no external database)
+- CORS enabled for frontend communication
+
+## Project Structure
+
+```
+Controllers/TaskController.cs     // Handles HTTP endpoints
+Models/TaskModel.cs              // Internal data model
+ViewModels/TaskViewModel.cs      // Data model exposed to frontend
+Services/TaskService.cs          // Business logic for task management
+Program.cs                       // App configuration and service setup
+```
 
 ## API Endpoints
-```
-| Method | Endpoint                         | Description                      |
-|--------|----------------------------------|----------------------------------|
-| GET    | `/api/tasks`                     | Get all tasks                    |
-| POST   | `/api/tasks`                     | Create new task                  |
-| POST   | `/api/tasks/{id}`                | Update existing task             |
-| DELETE | `/api/tasks/{id}`                | Remove task                      |
-| POST   | `/api/tasks/swap`                | Reorder tasks by dragging        |
-| POST   | `/api/tasks/hide/{id}`           | Manually hide a completed task   |
-| GET    | `/api/theme`                     | Get all theme                    |
-| POST   | `/api/theme/changeTheme          | Manually change theme (color)    |
-| POST   | `/api/tasks/theme/changeLanguage | Manually change theme language   |
 
-```
-## 🧪 How to Run
+| Method | Endpoint                          | Description                    |
+|--------|-----------------------------------|--------------------------------|
+| GET    | `/api/tasks`                      | Get all tasks                  |
+| POST   | `/api/tasks`                      | Create new task                |
+| POST   | `/api/tasks/{id}`                 | Update existing task           |
+| DELETE | `/api/tasks/{id}`                 | Delete task                    |
+| POST   | `/api/tasks/swap`                 | Reorder tasks via drag-and-drop|
+| POST   | `/api/tasks/hide/{id}`            | Manually hide completed task   |
+| GET    | `/api/theme`                      | Get current theme              |
+| POST   | `/api/theme/changeTheme`          | Change theme color             |
+| POST   | `/api/tasks/theme/changeLanguage` | Change language                |
+
+## How to Run
 
 1. Navigate to the backend directory:
-    ```
-    cd ToDoList_Backend
-    ```
+   ```
+   cd ToDoList_Backend
+   ```
 
-2. Run the backend:
-    ```
-    dotnet run
-    ```
+2. Run the application:
+   ```
+   dotnet run
+   ```
 
-3. API will be available at:
-    ```
-    https://localhost:5001/api/tasks
-    ```
+3. Access the API at:
+   ```
+   https://localhost:5001/api/tasks
+   ```
 
-Make sure to enable CORS and run the frontend in parallel to test full integration.
-
+Make sure the frontend is running in parallel and CORS is enabled for full integration.
